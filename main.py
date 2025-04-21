@@ -78,7 +78,7 @@ def push_image():
     with open(used_log_path, 'w') as f:
         f.write('\n'.join(used_images))
 
-    image_url = f'https://your-render-url.onrender.com/static/{selected_image}'
+    image_url = f'https://line-bot-papa.onrender.com/static/{selected_image}'
 
     # 先送出一段文字問候語
     text_message = TextSendMessage(text="估摸擰兩位，來看看今天的題目吧！")
