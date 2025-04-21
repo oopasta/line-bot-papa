@@ -10,14 +10,14 @@ from linebot.models import MessageEvent, TextMessage, ImageSendMessage, TextSend
 app = Flask(__name__, static_url_path='/static')
 
 # 設定 LINE Channel 資訊（你自己的）
-CHANNEL_ACCESS_TOKEN = 'YOUR_CHANNEL_ACCESS_TOKEN'
-CHANNEL_SECRET = 'YOUR_CHANNEL_SECRET'
+CHANNEL_ACCESS_TOKEN = '96/ASZx0468Dr2alabzP0GQqCwBFg+fH8UL1jN1pRlTj4sRbUWtyhF8YzZDidHciY2xmMmQCgoMo+0/e9ofWVYIJi4JkpsbGlBnjxC8re5tH/OCpGq77WOt0Dwm/iSfh3qKLcQFH691ewcoVFkbs8wdB04t89/1O/w1cDnyilFU='
+CHANNEL_SECRET = '2e11c07ce763f34979b7e4552f6361f6'
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
 # 設定你們的 LINE 群組 ID（實際測試）
-TARGET_GROUP_ID = 'YOUR_GROUP_ID'
+TARGET_GROUP_ID = 'C247a269f084e5beb5d1a6c6b8cb8a453'
 
 @app.route("/", methods=['GET'])
 def home():
