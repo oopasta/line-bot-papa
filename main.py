@@ -7,10 +7,10 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSend
 
 app = Flask(__name__, static_url_path='/static')
 
-# LINE 設定（填入你自己的資訊）
+# LINE 設定（已填入你的實際資訊）
 CHANNEL_ACCESS_TOKEN = '96/ASZx0468Dr2alabzP0GQqCwBFg+fH8UL1jN1pRlTj4sRbUWtyhF8YzZDidHciY2xmMmQCgoMo+0/e9ofWVYIJi4JkpsbGlBnjxC8re5tH/OCpGq77WOt0Dwm/iSfh3qKLcQFH691ewcoVFkbs8wdB04t89/1O/w1cDnyilFU='
 CHANNEL_SECRET = '2e11c07ce763f34979b7e4552f6361f6'
-TARGET_GROUP_ID = '你的群組 ID（例如 Cxxxxxxxxxxxxxxxxxxxx）'
+TARGET_GROUP_ID = 'C247a269f084e5beb5d1a6c6b8cb8a453'
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
@@ -29,13 +29,13 @@ def callback():
     body = request.get_data(as_text=True)
 
     try:
-    handler.handle(body, signature)
-except InvalidSignatureError:
-    print("❌ 簽章驗證失敗！請檢查 CHANNEL_SECRET 是否正確")
-    abort(400)
-except Exception as e:
-    print(f"❌ handler.handle 發生錯誤：{e}")
-    abort(400)
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        print("❌ 簽章驗證失敗！請檢查 CHANNEL_SECRET 是否正確")
+        abort(400)
+    except Exception as e:
+        print(f"❌ handler.handle 發生錯誤：{e}")
+        abort(400)
 
     return 'OK'
 
@@ -81,15 +81,12 @@ def push_image():
     with open(used_log_path, 'w') as f:
         f.write('\n'.join(used_images))
 
-    image_url = f"https://你的 Render 網址/static/{selected_image}"
+    image_url = f"https://line-bot-papa.onrender.com/static/{selected_image}"
 
-    # 發送開場白
     line_bot_api.push_message(
         TARGET_GROUP_ID,
         TextSendMessage(text="估摸擰兩位，來看看今天的題目吧！")
     )
-
-    # 發送圖片
     line_bot_api.push_message(
         TARGET_GROUP_ID,
         ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
