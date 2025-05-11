@@ -41,22 +41,24 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print("🔍 handle_message 有進來")  # 測試 log 有沒有印出
-    user_id = getattr(event.source, 'user_id', None)
     group_id = getattr(event.source, 'group_id', None)
-    room_id = getattr(event.source, 'room_id', None)
+    user_id = getattr(event.source, 'user_id', None)
 
-    print("=" * 40)
-    print(f"📩 收到訊息：{event.message.text}")
+    # 發送 groupId 給你自己
     if group_id:
-        print(f"👥 來自群組：{group_id}")
-    elif room_id:
-        print(f"👥 來自聊天室：{room_id}")
-    elif user_id:
-        print(f"👤 來自用戶：{user_id}")
-    else:
-        print("❓ 來源無法辨識")
-    print("=" * 40)
+        line_bot_api.push_message(
+            'U460988eb053cfa4e5218716ba1234fb6',  # 你的 user ID
+            TextSendMessage(text=f"👥 來自群組，groupId 是：{group_id}")
+        )
+
+    # 也可通知自己收到個人訊息（可選）
+    if user_id:
+        line_bot_api.push_message(
+            'U460988eb053cfa4e5218716ba1234fb6',
+            TextSendMessage(text="👤 收到你的個人訊息")
+        )
+
+
 
 @app.route("/push", methods=['GET'])
 def push_image():
