@@ -41,6 +41,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    print("🔍 handle_message 有進來")  # 測試 log 有沒有印出
     user_id = getattr(event.source, 'user_id', None)
     group_id = getattr(event.source, 'group_id', None)
     room_id = getattr(event.source, 'room_id', None)
