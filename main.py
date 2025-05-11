@@ -8,8 +8,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSend
 app = Flask(__name__, static_url_path='/static')
 
 # LINE 設定（填入你自己的資訊）
-CHANNEL_ACCESS_TOKEN = '你的 CHANNEL_ACCESS_TOKEN'
-CHANNEL_SECRET = '你的 CHANNEL_SECRET'
+CHANNEL_ACCESS_TOKEN = '96/ASZx0468Dr2alabzP0GQqCwBFg+fH8UL1jN1pRlTj4sRbUWtyhF8YzZDidHciY2xmMmQCgoMo+0/e9ofWVYIJi4JkpsbGlBnjxC8re5tH/OCpGq77WOt0Dwm/iSfh3qKLcQFH691ewcoVFkbs8wdB04t89/1O/w1cDnyilFU='
+CHANNEL_SECRET = '2e11c07ce763f34979b7e4552f6361f6'
 TARGET_GROUP_ID = '你的群組 ID（例如 Cxxxxxxxxxxxxxxxxxxxx）'
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
