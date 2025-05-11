@@ -43,7 +43,23 @@ def ping():
 # 接收文字訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print(f"收到訊息：{event.message.text} 來自：{event.source}")
+    user_id = getattr(event.source, 'user_id', None)
+    group_id = getattr(event.source, 'group_id', None)
+    room_id = getattr(event.source, 'room_id', None)
+
+    print("=" * 40)
+    print(f"📩 收到訊息：{event.message.text}")
+    if group_id:
+        print(f"👥 來自群組：{group_id}")
+    elif room_id:
+        print(f"👥 來自聊天室：{room_id}")
+    elif user_id:
+        print(f"👤 來自用戶：{user_id}")
+    else:
+        print("❓ 來源無法辨識")
+
+    print("=" * 40)
+
 
 # 每天早上 08:00 傳送不重複隨機圖片
 @app.route("/push", methods=['GET'])
