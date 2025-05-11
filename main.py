@@ -29,9 +29,13 @@ def callback():
     body = request.get_data(as_text=True)
 
     try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
+    handler.handle(body, signature)
+except InvalidSignatureError:
+    print("❌ 簽章驗證失敗！請檢查 CHANNEL_SECRET 是否正確")
+    abort(400)
+except Exception as e:
+    print(f"❌ handler.handle 發生錯誤：{e}")
+    abort(400)
 
     return 'OK'
 
